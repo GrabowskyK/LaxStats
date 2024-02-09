@@ -4,6 +4,7 @@ using LaxStats.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LaxStats.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240208124435_FixMatchModel")]
+    partial class FixMatchModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,37 +25,6 @@ namespace LaxStats.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LaxStats.Models.EventGoal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AssistId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MatchId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("TimeGoal")
-                        .HasColumnType("time");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AssistId");
-
-                    b.HasIndex("MatchId");
-
-                    b.HasIndex("PlayerId");
-
-                    b.ToTable("EventGoals");
-                });
-
             modelBuilder.Entity("LaxStats.Models.EventPenalty", b =>
                 {
                     b.Property<int>("Id")
@@ -60,9 +32,6 @@ namespace LaxStats.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("MatchId")
-                        .HasColumnType("int");
 
                     b.Property<int>("PenaltyType")
                         .HasColumnType("int");
@@ -77,8 +46,6 @@ namespace LaxStats.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MatchId");
 
                     b.HasIndex("PlayerId");
 
@@ -246,46 +213,13 @@ namespace LaxStats.Migrations
                     b.ToTable("TeamsInLeagues");
                 });
 
-            modelBuilder.Entity("LaxStats.Models.EventGoal", b =>
-                {
-                    b.HasOne("LaxStats.Models.Player", "Assist")
-                        .WithMany()
-                        .HasForeignKey("AssistId");
-
-                    b.HasOne("LaxStats.Models.Match", "Match")
-                        .WithMany("Goals")
-                        .HasForeignKey("MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LaxStats.Models.Player", "Player")
-                        .WithMany()
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Assist");
-
-                    b.Navigation("Match");
-
-                    b.Navigation("Player");
-                });
-
             modelBuilder.Entity("LaxStats.Models.EventPenalty", b =>
                 {
-                    b.HasOne("LaxStats.Models.Match", "Match")
-                        .WithMany("Penalty")
-                        .HasForeignKey("MatchId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("LaxStats.Models.Player", "Player")
                         .WithMany()
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Match");
 
                     b.Navigation("Player");
                 });
@@ -350,13 +284,6 @@ namespace LaxStats.Migrations
             modelBuilder.Entity("LaxStats.Models.League", b =>
                 {
                     b.Navigation("Leagues");
-                });
-
-            modelBuilder.Entity("LaxStats.Models.Match", b =>
-                {
-                    b.Navigation("Goals");
-
-                    b.Navigation("Penalty");
                 });
 
             modelBuilder.Entity("LaxStats.Models.Team", b =>

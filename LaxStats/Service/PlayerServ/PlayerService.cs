@@ -19,7 +19,16 @@ namespace LaxStats.Service.PlayerServ
             databaseContext.SaveChanges();
         }
 
-        public IEnumerable<Player> GetPlayers() => databaseContext.Players.Include(p => p.Team);
+        //public IEnumerable<Player> GetPlayers() => databaseContext.Players.Include(p => p.Team);
+        public IEnumerable<Player> GetPlayersFromTeam(int teamId) => databaseContext.Players.Include(p => p.Team).Where(p => p.TeamId == teamId);
 
+
+
+        //Do statycznego dodawania
+        public void AddPlayersList(List<Player> players)
+        {
+            databaseContext.Players.AddRange(players);
+            databaseContext.SaveChanges();
+        }
     }
 }

@@ -26,5 +26,8 @@ namespace LaxStats.Database
         public DbSet<Team> Teams { get; set; }
         public DbSet<Match> Matches {  get; set; }
         public DbSet<League> Leagues { get; set; }
+        public DbSet<TeamsInLeague> TeamsInLeagues { get; set; }
+        public DbSet<EventPenalty> EventPenalties { get; set; }
+        public DbSet<EventGoal> EventGoals{ get; set; }
     }
 }

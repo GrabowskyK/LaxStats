@@ -13,5 +13,7 @@
 
         public ICollection<Match> HomeMatches { get; set; }
         public ICollection<Match> AwayMatches { get; set; }
+
+        public ICollection<TeamsInLeague> TeamsInLeagues { get; set; }
     }
 }

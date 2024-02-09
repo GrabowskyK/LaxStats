@@ -1,4 +1,5 @@
-﻿using LaxStats.Service.LeagueServ;
+﻿using LaxStats.Models;
+using LaxStats.Service.LeagueServ;
 using LaxStats.Service.MatchServ;
 using LaxStats.Service.PlayerServ;
 using LaxStats.Service.TeamServ;
@@ -16,5 +17,20 @@ namespace LaxStats.Controllers
             _logger = logger;
             leagueService = _leagueService;
         }
+
+        [HttpGet("Leagues")]
+        public IActionResult LeaguesList()
+        {
+            var model = leagueService.GetLeagues();
+            return View(model);
+        }
+
+        [HttpGet("{leagueName}/Teams")]
+        public IActionResult TeamsInLeagueList(string leagueName, int leagueId)
+        {
+            var model = leagueService.GetTeamsFromLeague(leagueId);
+            return View(model);
+        }
+
     }
 }

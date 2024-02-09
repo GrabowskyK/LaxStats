@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LaxStats.Models.TeamsInLeague>
+
+@{
+    ViewData["Title"] = "TeamsInLeagueList";
+}
+<div style="infoBox">
+    <button>@Html.ActionLink("Matches", "MatchesInLeague","Match", new { leagueName = Model.ElementAt(0).League.Name, leagueId = Model.ElementAt(0).LeagueId })</button>
+    <button>@Html.ActionLink("Teams", "TeamsInLeagueList","League", new { leagueName = Model.ElementAt(0).League.Name, leagueId = Model.ElementAt(0).LeagueId })</button>
+</div>
+<h1>TeamsInLeagueList</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Team)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    @Html.ActionLink(item.Team.Name, "PlayersInTeam", "Player", new { leagueName = item.League.Name, teamName = item.Team.Name, teamId = item.Team.Id }, new { @class = "nav-link text-dark" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

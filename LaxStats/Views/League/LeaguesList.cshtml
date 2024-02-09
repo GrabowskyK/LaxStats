@@ -1,0 +1,13 @@
+﻿@model IEnumerable<LaxStats.Models.League>
+
+@{
+    ViewData["Title"] = "LeaguesList";
+}
+
+<h1>LeaguesList</h1>
+@foreach (var item in Model) {
+    <div>
+        @Html.ActionLink(item.Name, "TeamsInLeagueList", "League", new { leagueName = item.Name, leagueId = item.Id}, new { @class = "nav-link text-dark" })
+    </div>
+                
+}

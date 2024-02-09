@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace LaxStats.Models
+﻿namespace LaxStats.Models
 {
     public class Match
     {
@@ -11,10 +9,14 @@ namespace LaxStats.Models
         public Team AwayTeam { get; set; }
         public DateTime DateTime { get; set; }
         public int ScoreHomeTeam { get; set; } = 0;
-        public int ScoreAwayTeam { get;set; } = 0;
+        public int ScoreAwayTeam { get; set; } = 0;
         public string Place { get; set; }
         public bool IsEnded { get; set; } = false;
+        public int LeagueId { get; set; }
+        public League League { get; set; }
 
+        public ICollection<EventGoal> Goals { get; set; }
+        public ICollection<EventPenalty> Penalty { get; set; }
         public Match() { }
 
         public Match(Team homeTeam, Team awayTeam)

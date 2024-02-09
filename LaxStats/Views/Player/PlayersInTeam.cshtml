@@ -1,0 +1,60 @@
+﻿@model IEnumerable<LaxStats.Models.Player>
+
+@{
+    ViewData["Title"] = "PlayersInTeam";
+}
+<h1>PlayersInTeam</h1>
+<table class="table" style="text-align:center;" >
+    <thead>
+        <tr>
+            <th class="statsCell">
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname), @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="statsCell" title="Game played">
+                GP
+            </th>
+            <th class="statsCell" title="Goal">
+                G
+            </th>
+            <th class="statsCell" title="Assist">
+                A
+            </th>
+            <th class="statsCell" title="Penalties">
+                P
+            </th>
+            <th class="statsCell" title="Minutes penalties">
+                MP
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShirtNumber)
+            </td>
+            <td style="text-align:left;">
+                    @Html.DisplayFor(modelItem => item.Surname) @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="statsCell">
+                @Html.DisplayFor(modelItem => item.GamePlayed)
+            </td>
+                <td class="statsCell">
+                @Html.DisplayFor(modelItem => item.Goal)
+            </td>
+                <td class="statsCell">
+                @Html.DisplayFor(modelItem => item.Assist)
+            </td>
+                <td class="statsCell">
+                @Html.DisplayFor(modelItem => item.Penalties)
+            </td>
+                <td class="statsCell">
+                @Html.DisplayFor(modelItem => item.MinutesPenalties)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

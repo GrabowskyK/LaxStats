@@ -1,0 +1,72 @@
+﻿@model IEnumerable<LaxStats.Models.Match>
+
+@{
+    ViewData["Title"] = "MatchesInLeague";
+    var index = 0;
+}
+<div style="infoBox">
+    <button>@Html.ActionLink("Matches", "MatchesInLeague","Match", new { leagueName = Model.ElementAt(0).League.Name, leagueId = Model.ElementAt(0).League.Id })</button>
+    <button>@Html.ActionLink("Teams", "TeamsInLeagueList","League", new { leagueName = Model.ElementAt(0).League.Name, leagueId = Model.ElementAt(0).League.Id })</button>
+</div>
+<h1>MatchesInLeague</h1>
+<center>
+<table class="table" style=" text-align:center; width: 60%; ">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Date
+            </th>
+            <th>
+                Home Team
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                Away Team
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td style="width:10px;">
+                @(index + 1)
+            </td>
+                
+                @if (item.DateTime.Minute == 0)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime.Hour):@Html.DisplayFor(modelItem => item.DateTime.Minute)0
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateTime.Hour):@Html.DisplayFor(modelItem => item.DateTime.Minute)
+                    </td>
+                }
+                <td style="width:250px;">
+                @Html.DisplayFor(modelItem => item.HomeTeam.Name)
+            </td>
+                <td style="width:50px;">
+                    @Html.DisplayFor(modelItem => item.ScoreHomeTeam) : @Html.DisplayFor(modelItem => item.ScoreAwayTeam)
+                </td>
+                <td style="width:250px;">
+                @Html.DisplayFor(modelItem => item.AwayTeam.Name)
+            </td>
+            
+            <td style="width:100px">
+                @Html.DisplayFor(modelItem => item.Place)
+            </td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
+</center>

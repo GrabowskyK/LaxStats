@@ -14,6 +14,7 @@
         public int Penalties { get; set; }
         public int MinutesPenalties { get; set; }
         public int TeamId { get; set; }
-        public Team Team { get; set; }
+        public Team Team { get; set; } 
+
     }
 }

@@ -21,5 +21,20 @@ namespace LaxStats.Service.TeamServ
 
         public IEnumerable<Team> GetTeams() => databaseContext.Teams;
 
+        public void AddTeams(List<Team> teams)
+        {
+            databaseContext.Teams.AddRange(teams);
+            databaseContext.SaveChanges();
+        }
+
+
+        //TO już xd co tu robi XD 
+        // Only for static add to database
+        public void AddTeamsToLeague(List<TeamsInLeague> teams)
+        {
+            databaseContext.TeamsInLeagues.AddRange(teams);
+            databaseContext.SaveChanges();
+        }
+
     }
 }

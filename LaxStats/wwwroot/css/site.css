@@ -16,3 +16,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.statsCell{
+    width:30px;
+    
+}
+
+#infoBox{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+td, tr {
+    font-size: 21px;
+}
