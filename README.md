@@ -1,4 +1,7 @@
 # LaxStats - ASP.NET C#, MVC, Blazor, EF Core
+
+CURRENTLY DOSENT WORK WITH API!!!
+
 Display the league stats...
 <ul>
   <li>This is the simple project with create database by Entity Framework Core.</li>
