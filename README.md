@@ -1,3 +1,4 @@
+#LaxStats - ASP.NET C#, MVC, Blazor, EF Core
 This is the simple project with create database by Entity Framework Core.
 It possible to create new league, add teams, players. 
 Show stats for teams, players etc.
